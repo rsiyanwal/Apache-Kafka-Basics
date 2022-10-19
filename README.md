@@ -49,5 +49,11 @@ _( Topic Replication and Partition Leaders ; by [Rahul Siyanwal](https://github.
 ## Requirements and Installations
 ### Installing Kafka on Windows
 Please perform the following steps:
-1. **Installing WSL2:** Please make sure that you are using Windows 10 or above. We will use WSL2 on Windows for Kafka. To download, go Microsoft Store (You can find the app in Start menu) and search for "Ubuntu". For demonstration, I am using Ubuntu 20.04. Alternatively, use command ```wsl --install``` in Command Line or Powershell which install Ubuntu by default. 
-5. **Installing JDK version 11:** 
+  1. **Installing WSL2:** Please make sure that you are using Windows 10 or above. We will use WSL2 on Windows for Kafka. To download, go Microsoft Store (You can find the app in Start menu) and search for "Ubuntu". For demonstration, I am using Ubuntu 20.04. Alternatively, use command ```wsl --install``` in Command Line or Powershell which install Ubuntu by default. 
+  2. **Installing JDK version 11:** I am using Amazon Corretto 11. To download, please go to [Amazon Corretto 11 download page](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/generic-linux-install.html) and follow the instructions. Alternatively, use the following commands: 
+```
+   wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add - 
+   sudo add-apt-repository 'deb https://apt.corretto.aws stable main'
+   sudo apt-get update; sudo apt-get install -y java-11-amazon-corretto-jdk
+  ```
+  3. 
