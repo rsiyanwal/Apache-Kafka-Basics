@@ -56,4 +56,4 @@ Please perform the following steps:
    sudo add-apt-repository 'deb https://apt.corretto.aws stable main'
    sudo apt-get update; sudo apt-get install -y java-11-amazon-corretto-jdk
   ```
-  3. 
+  3. **Installing Apache Kafka:**  [Download Apache Kafka](https://kafka.apache.org/downloads) Binary, version ```2.13-3.1.0```. Move your folder to a place where it is easily accessable. I have moved the file in a folder called ```Kafka-2.13-3.1.0```.
