@@ -39,3 +39,15 @@ Let's take the example of three brokers with two different topics. Topic-A has 3
   - **At Most Once:** The offset is committed as soon as the messages are received. If the processing goes wrong, then some of the messages will be lost and won't be available to be read again
   - **Exactly Once:** When we read from a topic and write to a topic, we use the Transactional API. This offset setting is used for Kafka-to-Kafka workflow.
 
+- **Topic Replication:** Topics must have a replication factor greater than 1 (usually 2 or 3). If the Kafka Broker is down, another broker can serve the data to the client. For Example, Let's have Topic - A with 2 partitions and a replication factor of 2. We have three brokers, Broker 101, Broker 102, and Broker 103 (figure 6.21). If Broker 102 stops working, then Broker 101 and Broker 103 can still service the data to Kafka Client. Since we have Replicas, we now need a leader of the partition. The leader is the Broker for a particular partition. There can only be one leader for a partition at a time. Producers and Consumers only interact with the leader of the partition. In the diagram below, Broker 101 is the leader of Partition 0, and Broker 102 is the leader of Partition 1. The data replication is updated according to the data received and read. When the replicas are in synchronization, they are called In-Sync Replica (ISR).
+![Kafka-Replication drawio](https://user-images.githubusercontent.com/11557572/196468480-3ae24840-17d7-4c5f-8bb0-ae0b32144390.png)<br/>
+_( Topic Replication and Partition Leaders ; by [Rahul Siyanwal](https://github.com/rsiyanwal))_ <br/>
+
+- **Zookeeper:** Zookeeper is the tool that manages all the brokers (and keeps a list of them). Zookeeper helps elect the leader for partitions of topics because whenever a broker is down, we need to choose a new leader for the partition. Also, Zookeeper sends notifications to all brokers in case of recent topics, topic deletion, Broker dies, the Broker returns, etc. Up to Kafka version 2.X we have to use Zookeeper for all these tasks. However, newer versions of Kafka are slowly replacing Zookeeper with KafkaRaft. In 4.X versions of Kafka, we won't have Zookeeper. Zookeeper operates with an odd number of servers (1, 3, 5, 7). Zookeeper only has one leader server, and the rest of the servers are followers. To manage Kafka brokers, we must be familiar with Zookeeper. 
+
+# Apache Kafka Hands-on
+## Requirements and Installations
+### Installing Kafka on Windows
+Please perform the following steps:
+1. **Installing WSL2:** Please make sure that you are using Windows 10 or above. We will use WSL2 on Windows for Kafka. To download, go Microsoft Store (You can find the app in Start menu) and search for "Ubuntu". For demonstration, I am using Ubuntu 20.04. Alternatively, use command ```wsl --install``` in Command Line or Powershell which install Ubuntu by default. 
+5. **Installing JDK version 11:** 
